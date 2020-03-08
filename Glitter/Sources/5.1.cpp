@@ -85,8 +85,6 @@ int main() {
     // Ready
     ExecShaderProgram();
 
-    int i = 0;
-
     // Rendering Loop
     while (glfwWindowShouldClose(mWindow) == false) {
         if (glfwGetKey(mWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -96,19 +94,15 @@ int main() {
         glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        i++;
-        if ((i / 60 ) % 2 == 0)
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        else
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
         // Work
         // Put vertices to GPU memory
-        GLfloat vertices[4][3] = {
+        GLfloat vertices[6][3] = {
             {0.5f, 0.5f, 0.0f},
             {0.5f, -0.5f, 0.0f},
             {-0.5f, -0.5f, 0.0f},
-            {-0.5f, 0.5f, 0.0f}
+            {-0.5f, -0.5f, 0.0f},
+            {-0.5f, 0.5f, 0.0f},
+            {0.5f, 0.5f, 0.0f}
         };
 
         GLuint indices[6] = {
@@ -136,8 +130,7 @@ int main() {
         glBindVertexArray(0);
 
         glBindVertexArray(VAO);
-        //glDrawArrays(GL_TRIANGLES, 0, 3);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
         glBindVertexArray(0);
 
         // Flip Buffers and Draw

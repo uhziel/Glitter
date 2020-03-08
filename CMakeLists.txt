@@ -21,7 +21,7 @@ add_subdirectory(Glitter/Vendor/bullet)
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -std=c++11 -g")
     if(NOT WIN32)
         set(GLAD_LIBRARIES dl)
     endif()
@@ -55,11 +55,63 @@ source_group("Vendors" FILES ${VENDORS_SOURCES})
 
 add_definitions(-DGLFW_INCLUDE_NONE
                 -DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS}
+
+add_executable(main Glitter/Sources/main.cpp ${PROJECT_HEADERS}
                                ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
                                ${VENDORS_SOURCES})
-target_link_libraries(${PROJECT_NAME} assimp glfw
+target_link_libraries(main assimp glfw
                       ${GLFW_LIBRARIES} ${GLAD_LIBRARIES}
                       BulletDynamics BulletCollision LinearMath)
-set_target_properties(${PROJECT_NAME} PROPERTIES
+set_target_properties(main PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+
+
+add_executable(5.1 Glitter/Sources/5.1.cpp ${PROJECT_HEADERS}
+                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
+                               ${VENDORS_SOURCES})
+target_link_libraries(5.1 assimp glfw
+                      ${GLFW_LIBRARIES} ${GLAD_LIBRARIES}
+                      BulletDynamics BulletCollision LinearMath)
+set_target_properties(5.1 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+
+
+add_executable(5.2 Glitter/Sources/5.2.cpp ${PROJECT_HEADERS}
+                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
+                               ${VENDORS_SOURCES})
+target_link_libraries(5.2 assimp glfw
+                      ${GLFW_LIBRARIES} ${GLAD_LIBRARIES}
+                      BulletDynamics BulletCollision LinearMath)
+set_target_properties(5.2 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+
+
+add_executable(5.3 Glitter/Sources/5.3.cpp ${PROJECT_HEADERS}
+                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
+                               ${VENDORS_SOURCES})
+target_link_libraries(5.3 assimp glfw
+                      ${GLFW_LIBRARIES} ${GLAD_LIBRARIES}
+                      BulletDynamics BulletCollision LinearMath)
+set_target_properties(5.3 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+
+
+add_executable(6.0 Glitter/Sources/6.0.cpp ${PROJECT_HEADERS}
+                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
+                               ${VENDORS_SOURCES})
+target_link_libraries(6.0 assimp glfw
+                      ${GLFW_LIBRARIES} ${GLAD_LIBRARIES}
+                      BulletDynamics BulletCollision LinearMath)
+set_target_properties(6.0 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+
+
+add_executable(7.0 Glitter/Sources/7.0.cpp ${PROJECT_HEADERS}
+                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
+                               ${VENDORS_SOURCES})
+target_link_libraries(7.0 assimp glfw
+                      ${GLFW_LIBRARIES} ${GLAD_LIBRARIES}
+                      BulletDynamics BulletCollision LinearMath)
+set_target_properties(7.0 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+
